@@ -3,6 +3,7 @@ import { Platform, SafeAreaView, StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import * as Notifications from 'expo-notifications';
 import * as Device from 'expo-device';
+import { getEnvironment } from '../../..';
 
 type Props = {};
 
@@ -87,7 +88,7 @@ export const Home = (props: Props) => {
         cacheEnabled={false}
         originWhitelist={['*']}
         source={{
-          uri: 'http://Andrews-MBP.lan:3001',
+          uri: getEnvironment().siteUrl,
         }}
       />
     </SafeAreaView>
