@@ -71,7 +71,10 @@ getDevicePushToken();
 export const Home = (props: Props) => {
   const webviewRef = useRef<Ref>();
 
-  console.log('process.env!!!', process.env.EXPO_PUBLIC_SITE_URL);
+  console.log(
+    'process.env.EXPO_PUBLIC_SITE_URL',
+    process.env.EXPO_PUBLIC_SITE_URL,
+  );
 
   useEffect(() => {
     if (webviewRef.current && devicePushToken) {
