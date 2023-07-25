@@ -22,9 +22,11 @@ export default function App() {
     process.env.EXPO_PUBLIC_SITE_URI,
   );
   console.log(
-    'process.env.EXPO_PUBLIC_SITE_URL',
-    process.env.EXPO_PUBLIC_SITE_URL,
+    'process.env.EXPO_PUBLIC_SITE_URL 2',
+    process.env.EXPO_PUBLIC_EXPO_PUBLIC_SITE_URL,
   );
+
+  console.log('process.env', process.env);
 
   return (
     <NavigationContainer>
