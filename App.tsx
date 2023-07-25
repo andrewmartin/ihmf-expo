@@ -2,17 +2,13 @@
 import 'react-native-gesture-handler';
 
 import { StyleSheet } from 'react-native';
-import { getEnvironment } from './src/env';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { Home } from './src/env/components/Pages/Home';
 
 const Tab = createBottomTabNavigator();
-
 const Stack = createStackNavigator();
-
-console.log('getEnvironment()', getEnvironment());
 
 export default function App() {
   return (
