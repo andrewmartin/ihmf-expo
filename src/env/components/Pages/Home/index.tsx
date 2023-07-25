@@ -27,8 +27,6 @@ type Ref =
     >
   | any; // TODO fix
 
-let devicePushToken: string;
-
 Notifications.setNotificationHandler({
   handleNotification: async () => ({
     shouldShowAlert: true,
@@ -37,7 +35,7 @@ Notifications.setNotificationHandler({
   }),
 });
 
-const getDevicePushToken = async () => {
+const getDevicePushToken = async (): Promise<string | void> => {
   if (Device.isDevice) {
     const { status: existingStatus } =
       await Notifications.getPermissionsAsync();
@@ -50,8 +48,9 @@ const getDevicePushToken = async () => {
       alert('Failed to get push token for push notification!');
       return;
     }
-    const { data } = await Notifications.getDevicePushTokenAsync();
-    devicePushToken = data;
+    const tokenData = await Notifications.getDevicePushTokenAsync();
+    console.log('tokenData:', JSON.stringify(tokenData, null, 2));
+    return tokenData.data;
   } else {
     alert('Must use physical device for Push Notifications');
   }
@@ -66,10 +65,9 @@ const getDevicePushToken = async () => {
   }
 };
 
-getDevicePushToken();
-
 export const Home = (props: Props) => {
   const webviewRef = useRef<Ref>();
+  const tokenRef = useRef<string>();
 
   console.log(
     'process.env.EXPO_PUBLIC_SITE_URL',
@@ -77,14 +75,22 @@ export const Home = (props: Props) => {
   );
 
   useEffect(() => {
-    if (webviewRef.current && devicePushToken) {
+    if (!tokenRef.current) {
+      getDevicePushToken().then((result) => {
+        if (typeof result === 'string') {
+          tokenRef.current = result;
+        }
+      });
+    }
+
+    if (webviewRef.current && tokenRef.current) {
       webviewRef.current.postMessage(
         JSON.stringify({
-          devicePushToken,
+          devicePushToken: tokenRef.current,
         }),
       );
     }
-  }, [webviewRef.current]);
+  }, [webviewRef.current, tokenRef.current]);
 
   return (
     <SafeAreaView style={styles.container}>
