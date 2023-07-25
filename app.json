@@ -16,7 +16,7 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "ihmf-app"
+      "bundleIdentifier": "com.ihmf.app"
     },
     "android": {
       "adaptiveIcon": {

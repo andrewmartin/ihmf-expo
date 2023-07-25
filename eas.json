@@ -8,13 +8,13 @@
             "distribution": "internal"
         },
         "development-simulator": {
-            "developmentClient": true,
-            "distribution": "internal",
+            "extends": "development",
             "ios": {
-                "simulator": true
+                "simulator": true,
+
             },
             "env": {
-                "EXPO_PUBLIC_SITE_URI": "https://ihatemyfriends.app"
+                "EXPO_PUBLIC_SITE_URI": "https://ihatemyfriends.azzzzpp"
             }
         },
         "preview": {
