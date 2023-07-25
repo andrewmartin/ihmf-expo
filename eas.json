@@ -7,7 +7,7 @@
             "developmentClient": true,
             "distribution": "internal",
             "env": {
-                "EXPO_PUBLIC_SITE_URI": "https://ihatemyfriends.app"
+                "EXPO_PUBLIC_SITE_URL": "https://ihatemyfriends.app"
             }
         },
         "development-simulator": {
@@ -21,7 +21,7 @@
         },
         "production": {
             "env": {
-                "EXPO_PUBLIC_SITE_URI": "https://ihatemyfriends.app"
+                "EXPO_PUBLIC_SITE_URL": "https://ihatemyfriends.app"
             }
         }
     }

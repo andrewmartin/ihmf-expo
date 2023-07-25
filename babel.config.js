@@ -6,7 +6,7 @@ module.exports = function (api) {
       [
         'transform-inline-environment-variables',
         {
-          include: ['NODE_ENV', 'EXPO_PUBLIC_SITE_URI'],
+          include: ['NODE_ENV', 'EXPO_PUBLIC_SITE_URL'],
         },
       ],
     ],

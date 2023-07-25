@@ -1,9 +1,7 @@
 // https://reactnavigation.org/docs/stack-navigator/
 import 'react-native-gesture-handler';
 
-import { StatusBar } from 'expo-status-bar';
-import { SafeAreaView, ScrollView, StyleSheet, Text, View } from 'react-native';
-import { WebView } from 'react-native-webview';
+import { StyleSheet } from 'react-native';
 import { getEnvironment } from './src/env';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -17,17 +15,6 @@ const Stack = createStackNavigator();
 console.log('getEnvironment()', getEnvironment());
 
 export default function App() {
-  console.log(
-    'process.env.EXPO_PUBLIC_SITE_URI',
-    process.env.EXPO_PUBLIC_SITE_URI,
-  );
-  console.log(
-    'process.env.EXPO_PUBLIC_SITE_URL 2',
-    process.env.EXPO_PUBLIC_EXPO_PUBLIC_SITE_URL,
-  );
-
-  console.log('process.env', process.env);
-
   return (
     <NavigationContainer>
       <Stack.Navigator

@@ -71,6 +71,8 @@ getDevicePushToken();
 export const Home = (props: Props) => {
   const webviewRef = useRef<Ref>();
 
+  console.log('process.env!!!', process.env.EXPO_PUBLIC_SITE_URL);
+
   useEffect(() => {
     if (webviewRef.current && devicePushToken) {
       webviewRef.current.postMessage(
@@ -88,7 +90,7 @@ export const Home = (props: Props) => {
         cacheEnabled={false}
         originWhitelist={['*']}
         source={{
-          uri: getEnvironment().siteUrl,
+          uri: process.env.EXPO_PUBLIC_SITE_URL as string,
         }}
       />
     </SafeAreaView>
