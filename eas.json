@@ -10,8 +10,7 @@
         "development-simulator": {
             "extends": "development",
             "ios": {
-                "simulator": true,
-
+                "simulator": true
             },
             "env": {
                 "EXPO_PUBLIC_SITE_URI": "https://ihatemyfriends.azzzzpp"
