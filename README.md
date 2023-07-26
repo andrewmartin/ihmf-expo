@@ -6,7 +6,8 @@ yarn ios
 
 Tips:
 
-- In simulator, `CTRL + Z` launches the debug menu
+- In simulator, `CTRL + Z` launches the debug menu or hold down 3 fingers in iOS
+- `npx expo start --dev-client -c` when swapping `.env` and update `.env` only
 
 ## Notifications
 
