@@ -1,9 +1,16 @@
-import { MutableRefObject, useRef } from 'react';
-import { SafeAreaView, StyleSheet } from 'react-native';
+import { MutableRefObject, useCallback, useRef, useState } from 'react';
+import { StyleSheet } from 'react-native';
 import WebView from 'react-native-webview';
 import { useGetBadgeCount, useGetToken } from '../../../../hooks';
 
-type Props = {};
+type Props = {
+  path?: string;
+};
+
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import { useFocusEffect } from '@react-navigation/native';
+
+const Tab = createBottomTabNavigator();
 
 const styles = StyleSheet.create({
   container: {
@@ -25,22 +32,38 @@ export type WebviewRef =
     >
   | any; // TODO fix
 
-export const Home = (props: Props) => {
+export const WebviewPage = (props: Props) => {
   const webviewRef = useRef<WebviewRef>();
+
+  const [path, setUrl] = useState<string | undefined>(undefined);
 
   useGetToken(webviewRef);
   useGetBadgeCount(webviewRef);
 
+  useFocusEffect(
+    useCallback(() => {
+      setUrl(props.path || '/');
+
+      return () => {
+        setUrl(undefined);
+      };
+    }, [path]),
+  );
+
+  const uri = `${process.env.EXPO_PUBLIC_SITE_URL as string}${path}`;
+
+  if (!path) {
+    return null;
+  }
+
   return (
-    <SafeAreaView style={styles.container}>
-      <WebView
-        ref={webviewRef}
-        cacheEnabled={false}
-        originWhitelist={['*']}
-        source={{
-          uri: process.env.EXPO_PUBLIC_SITE_URL as string,
-        }}
-      />
-    </SafeAreaView>
+    <WebView
+      ref={webviewRef}
+      cacheEnabled={true}
+      originWhitelist={['*']}
+      source={{
+        uri,
+      }}
+    />
   );
 };

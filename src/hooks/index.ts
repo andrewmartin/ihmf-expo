@@ -62,7 +62,9 @@ export const useGetToken = (webviewRef: WebviewRef) => {
       });
     }
 
-    if (webviewRef.current && tokenRef.current && !hasSent) {
+    console.log('tokenRef.current', tokenRef.current);
+
+    if (webviewRef.current && tokenRef.current) {
       webviewRef.current.postMessage(
         JSON.stringify({
           devicePushToken: tokenRef.current,
